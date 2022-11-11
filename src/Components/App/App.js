@@ -5,16 +5,21 @@ import Playlist from '../Playlist/Playlist';
 import './App.css';
 
 const exampleTrack = {
-  id: 0, 
   name: "Satellite", 
   artist: "Dave Matthews Band",
-  album: "Under the Table and Dreaming"
-
+  album: "Under the Table and Dreaming",
+  id: 0
 };
-const exampleTracks = [exampleTrack, exampleTrack, exampleTrack];
+
+const exampleSearchResults = [exampleTrack, exampleTrack, exampleTrack, exampleTrack, exampleTrack, exampleTrack];
+const examplePlaylistTracks = [exampleTrack];
+
+const examplePlaylistName = "Example Playlist Name";
 
 function App(props) {
-  const [tracks, setTracks] = useState(exampleTracks);
+  const [searchResults, setSearchResults] = useState(exampleSearchResults);
+  const [playlistTracks, setPlaylistTracks] = useState(examplePlaylistTracks);
+  const [playlistName, setPlaylistName] = useState(examplePlaylistName);
 
   return (
     <div>
@@ -22,8 +27,8 @@ function App(props) {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults tracks={tracks} />
-          <Playlist />
+          <SearchResults tracks={searchResults} />
+          <Playlist tracks={playlistTracks} playlistName={playlistName} />
         </div>
       </div>
     </div>
