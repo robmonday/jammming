@@ -5,10 +5,19 @@ import './Track.css';
 const Track = (props) => {
 
 	const addTrack = props.onAdd;
+	const removeTrack = props.onRemove;
+
+	const handleClick = () => {
+		if (props.isRemoval === false) {
+			addTrack(props.id);
+		} else if (props.isRemoval === true) {
+			removeTrack(props.id);
+		}
+	}
 
 	const renderAction = () => {
 		return (
-			<button className="Track-action" onClick={() => addTrack(props.id)}>
+			<button className="Track-action" onClick={handleClick}>
 				{ props.isRemoval ? '-' : '+' }
 			</button>
 		);
