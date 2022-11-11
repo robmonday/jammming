@@ -14,12 +14,10 @@ const exampleTrack = {
 const exampleSearchResults = [exampleTrack, exampleTrack, exampleTrack, exampleTrack, exampleTrack, exampleTrack];
 const examplePlaylistTracks = [exampleTrack];
 
-const examplePlaylistName = "Example Playlist Name";
-
 function App(props) {
   const [searchResults, setSearchResults] = useState(exampleSearchResults);
   const [playlistTracks, setPlaylistTracks] = useState(examplePlaylistTracks);
-  const [playlistName, setPlaylistName] = useState(examplePlaylistName);
+  const [playlistName, setPlaylistName] = useState();
 
   const addTrack = (searchResultsIndex) => {
     setPlaylistTracks(prev => [...prev, searchResults[searchResultsIndex]]);
@@ -36,6 +34,10 @@ function App(props) {
     setPlaylistTracks(prev => prev.filter(track => track.id !== playlistIndex));
   }
 
+  const updatePlaylistName = (name) => {
+    setPlaylistName(name);
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
@@ -43,7 +45,7 @@ function App(props) {
         <SearchBar />
         <div className="App-playlist">
           <SearchResults tracks={searchResults} onAdd={addTrack} />
-          <Playlist tracks={playlistTracks} playlistName={playlistName} onRemove={removeTrack} />
+          <Playlist tracks={playlistTracks} playlistName={playlistName} onNameChange={updatePlaylistName} onRemove={removeTrack} />
         </div>
       </div>
     </div>
