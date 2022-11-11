@@ -18,6 +18,7 @@ function App(props) {
   const [searchResults, setSearchResults] = useState(exampleSearchResults);
   const [playlistTracks, setPlaylistTracks] = useState(examplePlaylistTracks);
   const [playlistName, setPlaylistName] = useState();
+  const [searchTerm, setSearchTerm] = useState();
 
   const addTrack = (searchResultsIndex) => {
     setPlaylistTracks(prev => [...prev, searchResults[searchResultsIndex]]);
@@ -42,7 +43,7 @@ function App(props) {
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar searchTerm={searchTerm} />
         <div className="App-playlist">
           <SearchResults tracks={searchResults} onAdd={addTrack} />
           <Playlist tracks={playlistTracks} playlistName={playlistName} onNameChange={updatePlaylistName} onRemove={removeTrack} />
