@@ -21,13 +21,24 @@ function App(props) {
   const [playlistTracks, setPlaylistTracks] = useState(examplePlaylistTracks);
   const [playlistName, setPlaylistName] = useState(examplePlaylistName);
 
+  const addTrack = (searchResultsIndex) => {
+    setPlaylistTracks(prev => [...prev, searchResults[searchResultsIndex]]);
+
+    //THIS CONDITIONAL ENSURES A SONG CAN ONLY BE ADDED ONCE; HOWEVER THAT DOESN'T WORK FOR TESTING...ADD IT BACK WHEN YOU'RE READY.
+    /*
+    if (!playlistTracks.find(savedTrack => savedTrack.id === searchResultsIndex)) {
+      // put your code here;
+    }
+    */
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults tracks={searchResults} />
+          <SearchResults tracks={searchResults} onAdd={addTrack} />
           <Playlist tracks={playlistTracks} playlistName={playlistName} />
         </div>
       </div>
